@@ -1,0 +1,6 @@
+flask
+pdfplumber
+spacy
+psycopg2-binary
+werkzeug
+scikit-learn
