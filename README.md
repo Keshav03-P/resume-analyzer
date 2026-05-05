@@ -29,3 +29,51 @@ A Flask-based web application that analyzes resumes and compares them with job d
 ---
 
 ## 📂 Project Structure
+resume-analyzer/
+│
+├── app.py
+├── skills.py
+├── requirements.txt
+├── Procfile
+├── init_db.py
+│
+├── templates/
+│ ├── index.html
+│ ├── login.html
+│ ├── register.html
+│ └── history.html
+
+
+---
+
+## ⚙️ Environment Variables
+
+Create environment variables in Render:
+
+
+---
+
+## 🗄️ Database Tables
+
+Run this SQL in Render PostgreSQL:
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username TEXT UNIQUE,
+    password TEXT
+);
+
+CREATE TABLE resumes (
+    id SERIAL PRIMARY KEY,
+    filename TEXT,
+    match_score INT,
+    skills TEXT,
+    user_id INT
+);
+
+pip install -r requirements.txt
+python app.py
+
+👨‍💻 Author
+Keshav Patil
