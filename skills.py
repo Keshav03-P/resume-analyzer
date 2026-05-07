@@ -1,32 +1,65 @@
-#------ skills.py --------
-
 SKILLS = [
-    "python","java","c++","sql","mysql","oracle","html","css","javascript",
-    "react","node","flask","django","machine learning","data analysis",
-    "linux","git","api","aws"SKILLS = [
+
+    # Programming
     "python",
+    "java",
+    "c++",
+    "javascript",
+
+    # Backend
     "flask",
     "django",
+    "fastapi",
+
+    # Frontend
+    "html",
+    "css",
+    "bootstrap",
+    "react",
+    "chart.js",
+
+    # Database
     "mysql",
     "postgresql",
+    "sqlite",
+
+    # APIs
     "rest api",
-    "bootstrap",
-    "chart.js",
+    "api",
+
+    # AI / NLP
     "nlp",
+    "machine learning",
+    "tf-idf",
+    "cosine similarity",
+
+    # Tools
     "git",
-    "testing",
+    "github",
+
+    # Security
     "authentication",
     "authorization",
-    "tf-idf",
-    "cosine similarity"
-]
+    "password hashing",
+
+    # Deployment
+    "render",
+    "gunicorn",
+
+    # Networking
+    "tcp/ip",
+
+    # Testing
+    "testing",
+    "debugging",
+
+    # Methodology
+    "agile"
 ]
 
-#-------- SKILLS ----------
 SKILL_SYNONYMS = {
-    "machine learning":["ml","machine-learning"],
-    "javascript":["js"],
-    "c++":["cpp"],
-    "python":["py"],
-    "sql":["structured query language"]
+    "postgres": "postgresql",
+    "js": "javascript",
+    "ml": "machine learning",
+    "restful api": "rest api"
 }
