@@ -35,13 +35,18 @@ def get_connection():
 # ---------------- KEYWORD EXTRACTION ---------------- #
 def extract_keywords(text):
     text = text.lower()
-    text = re.sub(r'[^\w\s]', '', text)
-    words = text.split()
 
-    stopwords = ["and", "or", "the", "with", "for", "a", "an", "to", "in"]
-    keywords = [w for w in words if w not in stopwords and len(w) > 2]
+    found_skills = []
 
-    return list(set(keywords))
+    for skill in SKILLS:
+        if skill.lower() in text:
+            found_skills.append(skill)
+
+    for synonym, real_skill in SKILL_SYNONYMS.items():
+        if synonym.lower() in text:
+            found_skills.append(real_skill)
+
+    return list(set(found_skills))
 
 # ---------------- REGISTER ---------------- #
 @app.route('/register', methods=['GET', 'POST'])
