@@ -162,3 +162,30 @@ def history():
 # ---------------- RUN ---------------- #
 if __name__ == '__main__':
     app.run(debug=True)
+
+def create_tables():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            username TEXT UNIQUE,
+            password TEXT
+        )
+    """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS resumes (
+            id SERIAL PRIMARY KEY,
+            filename TEXT,
+            match_score INT,
+            skills TEXT,
+            user_id INT
+        )
+    """)
+
+    conn.commit()
+    conn.close()
+
+create_tables()
