@@ -3,6 +3,8 @@ import pdfplumber
 import os
 import spacy
 import psycopg2
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 from werkzeug.security import generate_password_hash, check_password_hash
 from skills import SKILLS, SKILL_SYNONYMS
 
