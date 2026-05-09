@@ -20,6 +20,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # SpaCy model
 nlp = spacy.load("en_core_web_sm")
+model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # PostgreSQL Connection
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -76,7 +77,18 @@ def extract_keywords(text):
             found_skills.append(real_skill)
 
     return list(set(found_skills))
+    
+def semantic_match(resume_text, jd_text):
 
+    resume_embedding = model.encode([resume_text])
+    jd_embedding = model.encode([jd_text])
+
+    similarity = cosine_similarity(
+        resume_embedding,
+        jd_embedding
+    )[0][0]
+
+    return int(similarity * 100)
 
 # Register
 @app.route('/register', methods=['GET', 'POST'])
@@ -167,9 +179,10 @@ def index():
 
             matched = list(set(resume_keywords) & set(jd_keywords))
 
-            match_score = int(
-                (len(matched) / len(jd_keywords)) * 100
-            ) if jd_keywords else 0
+            match_score = semantic_match(
+                resume_text,
+                jd_text
+            )
 
             suggestions = list(
                 set(jd_keywords) - set(resume_keywords)
